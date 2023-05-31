@@ -1,0 +1,60 @@
+@use '../utils' as u;
+
+.grid {
+    margin-inline: auto;
+    // add 20px on each side of the grid container
+    width: min(100% - 40px, 1000px);
+    //max-width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr;
+    // auto means it's going to be sized based on how much
+    // content the grid child item contains
+    grid-template-rows: auto auto;
+    gap: 40px;
+
+    @include u.breakpoint(large) {
+        grid-template-columns: 2fr 1fr;
+        // solves the extra gap bellow to row
+        grid-template-rows: auto;
+    }
+
+    &__main {
+        padding: 1rem;
+    }
+
+    &__main {
+        background-color: lightblue;
+
+        @include u.breakpoint(medium) {
+            background-color: lightgreen;
+        }
+
+        @include u.breakpoint(large) {
+            background-color: lightsalmon;
+        }
+    }
+
+    &__sidebar {
+
+        @include u.breakpoint-down(medium) {
+            text-align: center;
+        }
+
+        & > * + * {
+            margin-block-start: 1em;
+        }
+    }
+
+    &__widget {
+        padding: 1em;
+        background-color: lightcoral;
+
+        &--cyan {
+            background-color: lightseagreen;
+        }
+
+        &--brown {
+            background-color: brown;
+        }
+    }
+}
